@@ -5,6 +5,7 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.avgh.bibliotaller.room.dao.BookDao
+import com.avgh.bibliotaller.room.dao.ContentDao
 import com.avgh.bibliotaller.room.entities.Book
 import com.avgh.bibliotaller.room.entities.Content
 
@@ -12,6 +13,7 @@ import com.avgh.bibliotaller.room.entities.Content
 abstract class LibraryDatabase : RoomDatabase() {
 
     abstract fun bookDao(): BookDao
+    abstract fun contentDao(): ContentDao
 
     companion object {
         @Volatile

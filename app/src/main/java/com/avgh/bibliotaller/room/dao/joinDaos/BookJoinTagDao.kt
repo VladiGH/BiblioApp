@@ -1,15 +1,16 @@
-package com.avgh.bibliotaller.room.dao
+package com.avgh.bibliotaller.room.dao.joinDaos
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.avgh.bibliotaller.room.entities.Book
+import com.avgh.bibliotaller.room.entities.Tag
 import com.avgh.bibliotaller.utilities.TableNameSpace
 
 @Dao
-interface BookDao {
+interface BookJoinTagDao {
 
     @Insert
-    fun insertBook(book: Book)
+    fun insert(book: Book, tag: Tag)
 
     @Delete
     fun delete(book: Book)
@@ -18,8 +19,8 @@ interface BookDao {
     fun update(book: Book)
 
     @Query("SELECT * FROM ${TableNameSpace.bookTableName}")
-    fun getBook(): LiveData<Book>
+    fun getBookJoinTagDao(): LiveData<Book>
 
     @Query("SELECT * FROM ${TableNameSpace.bookTableName}")
-    fun getBooks(): LiveData<List<Book>>
+    fun getBookJoinTagDaos(): LiveData<List<Book>>
 }

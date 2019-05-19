@@ -2,8 +2,9 @@ package com.avgh.bibliotaller.room.entities
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.avgh.bibliotaller.utilities.TableNameSpace
 
-@Entity(tableName = "book")
+@Entity(tableName = TableNameSpace.bookTableName)
 data class Book(
     @PrimaryKey
     val ISBN: String,

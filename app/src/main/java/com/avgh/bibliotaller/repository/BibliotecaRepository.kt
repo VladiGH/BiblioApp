@@ -1,7 +1,6 @@
 package com.avgh.bibliotaller.repository
 
 import androidx.annotation.WorkerThread
-import androidx.lifecycle.LiveData
 import com.avgh.bibliotaller.room.dao.BookDao
 import com.avgh.bibliotaller.room.entities.Book
 
@@ -15,11 +14,11 @@ class BibliotecaRepository(private val bookDao: BookDao ) {
    // fun getAllBooks(): LiveData<List<Book>> = bookDao.getBooks()
 
     fun deleteBook(book: Book){
-        bookDao.deleteBook(book)
+        bookDao.delete(book)
     }
 
     fun updateBook(book: Book){
-        bookDao.updateBook(book)
+        bookDao.update(book)
     }
 
 
