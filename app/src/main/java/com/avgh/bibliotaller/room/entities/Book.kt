@@ -10,4 +10,6 @@ data class Book(
     val ISBN: String,
     val cover: String,
     val edition: Int
-)
+){
+    var content: HashMap<Int, Content>? = null
+}

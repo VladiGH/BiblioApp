@@ -4,16 +4,31 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.avgh.bibliotaller.room.dao.AuthorDao
 import com.avgh.bibliotaller.room.dao.BookDao
 import com.avgh.bibliotaller.room.dao.ContentDao
-import com.avgh.bibliotaller.room.entities.Book
-import com.avgh.bibliotaller.room.entities.Content
+import com.avgh.bibliotaller.room.entities.*
+import com.avgh.bibliotaller.room.entities.joinEntities.BookJoinAuthor
+import com.avgh.bibliotaller.room.entities.joinEntities.BookJoinTag
 
-@Database(entities = [Book::class, Content::class], version = 1, exportSchema = false)
+@Database(
+    entities = [
+        Book::class,
+        Content::class,
+        Author::class,
+        Tag::class,
+        Editorial::class,
+        BookJoinAuthor::class,
+        BookJoinTag::class
+    ],
+    version = 1,
+    exportSchema = false
+)
 abstract class LibraryDatabase : RoomDatabase() {
 
     abstract fun bookDao(): BookDao
     abstract fun contentDao(): ContentDao
+    abstract fun authorDao(): AuthorDao
 
     companion object {
         @Volatile

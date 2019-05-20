@@ -15,6 +15,7 @@ import com.avgh.bibliotaller.utilities.TableNameSpace
 data class Content(
     @PrimaryKey(autoGenerate = true)
     val id: Int,
+    val language: Int,
     val title: String,
     val resume: String,
     val bookId: String

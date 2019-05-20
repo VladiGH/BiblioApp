@@ -18,9 +18,9 @@ interface BookJoinTagDao {
     @Update
     fun update(book: Book)
 
-    @Query("SELECT * FROM ${TableNameSpace.bookTableName}")
-    fun getBookJoinTagDao(): LiveData<Book>
+    @Query("SELECT * FROM ${TableNameSpace.bookTableName} WHERE ISBN = :bookId")
+    fun getBookJoinTag(bookId: String): LiveData<Book>
 
     @Query("SELECT * FROM ${TableNameSpace.bookTableName}")
-    fun getBookJoinTagDaos(): LiveData<List<Book>>
+    fun getBookJoinTags(): LiveData<List<Book>>
 }

@@ -4,9 +4,11 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.avgh.bibliotaller.utilities.TableNameSpace
 
-@Entity(tableName = TableNameSpace.tagTableName)
-data class Tag(
+@Entity(tableName = TableNameSpace.editorialTableName)
+data class Editorial(
     @PrimaryKey(autoGenerate = true)
     val id: Int,
-    val name: String
+    val name: String,
+    val year: String,
+    val city: String
 )

@@ -18,10 +18,10 @@ interface ContentDao{
     @Update
     fun update(element: Content)
 
-    @Query("SELECT * FROM ${TableNameSpace.contentTableName}")
-    fun getContents(): LiveData<List<Content>>
-
     @Query("SELECT * FROM ${TableNameSpace.contentTableName} WHERE bookId =:ISBN")
-    fun getContent(ISBN : String): LiveData<Content>
+    fun getContents(ISBN : String): LiveData<List<Content>>
+
+    @Query("SELECT * FROM ${TableNameSpace.contentTableName} WHERE bookId =:ISBN AND language=:language")
+    fun getContent(ISBN : String, language: Int): LiveData<Content>
 
 }
