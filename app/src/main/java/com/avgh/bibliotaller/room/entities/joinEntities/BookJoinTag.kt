@@ -6,16 +6,22 @@ import com.avgh.bibliotaller.room.entities.Book
 import com.avgh.bibliotaller.room.entities.Tag
 import com.avgh.bibliotaller.utilities.TableNameSpace
 
-@Entity(tableName = TableNameSpace.bookJoinTagTableName,
+@Entity(
+    tableName = TableNameSpace.bookJoinTagTableName,
     primaryKeys = ["bookId", "tagId"],
     foreignKeys = [
-        ForeignKey(entity = Book::class,
+        ForeignKey(
+            entity = Book::class,
             parentColumns = ["ISBN"],
-            childColumns = ["bookId"]),
-        ForeignKey(entity = Tag::class,
+            childColumns = ["bookId"]
+        ),
+        ForeignKey(
+            entity = Tag::class,
             parentColumns = ["id"],
-            childColumns = ["tagId"])
-    ])
+            childColumns = ["tagId"]
+        )
+    ]
+)
 data class BookJoinTag(
     val bookId: String,
     val tagId: Int

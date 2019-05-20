@@ -8,10 +8,12 @@ import com.avgh.bibliotaller.utilities.TableNameSpace
 
 
 @Entity(tableName = TableNameSpace.contentTableName)
-@ForeignKey(entity = Book::class,
+@ForeignKey(
+    entity = Book::class,
     parentColumns = ["ISBN"],
     childColumns = ["bookId"],
-    onDelete = CASCADE)
+    onDelete = CASCADE
+)
 data class Content(
     @PrimaryKey(autoGenerate = true)
     val id: Int,

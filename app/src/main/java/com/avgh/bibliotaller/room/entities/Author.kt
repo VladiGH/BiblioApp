@@ -4,7 +4,10 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.avgh.bibliotaller.utilities.TableNameSpace
 
-@Entity(tableName = TableNameSpace.autorTableName)
+@Entity(
+    tableName = TableNameSpace.autorTableName,
+    indices = [androidx.room.Index("id")]
+)
 data class Author(
     val name: String,
     @PrimaryKey(autoGenerate = true)

@@ -18,8 +18,8 @@ interface AuthorDao {
     fun delete(author: Author)
 
     @Query("SELECT * FROM ${TableNameSpace.autorTableName} WHERE id = :authorId")
-    fun getAuthor(authorId: Int) : LiveData<Author>
+    fun getAuthor(authorId: Int): LiveData<Author>
 
     @Query("SELECT * FROM ${TableNameSpace.autorTableName}")
-    fun getAuthors() : LiveData<List<Author>>
+    fun getAuthors(): LiveData<List<Author>>
 }

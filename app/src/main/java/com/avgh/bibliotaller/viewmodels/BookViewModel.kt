@@ -14,15 +14,15 @@ class BookViewModel(application: Application) : AndroidViewModel(application) {
 
     private val repository: BibliotecaRepository
 
-    val allBooks : LiveData<List<Book>>
+    val allBooks: LiveData<List<Book>>
 
-    init{
+    init {
         val booksDao = LibraryDatabase.getDatabase(application).bookDao()
         repository = BibliotecaRepository(booksDao)
         allBooks = repository.getAllBooks()
     }
 
-    fun insert(book:Book) = viewModelScope.launch(Dispatchers.IO){
+    fun insert(book: Book) = viewModelScope.launch(Dispatchers.IO) {
         repository.insert(book)
     }
 }

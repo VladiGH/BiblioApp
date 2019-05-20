@@ -7,6 +7,7 @@ import androidx.room.RoomDatabase
 import com.avgh.bibliotaller.room.dao.AuthorDao
 import com.avgh.bibliotaller.room.dao.BookDao
 import com.avgh.bibliotaller.room.dao.ContentDao
+import com.avgh.bibliotaller.room.dao.joinDaos.BookJoinAuthorDao
 import com.avgh.bibliotaller.room.entities.*
 import com.avgh.bibliotaller.room.entities.joinEntities.BookJoinAuthor
 import com.avgh.bibliotaller.room.entities.joinEntities.BookJoinTag
@@ -29,6 +30,7 @@ abstract class LibraryDatabase : RoomDatabase() {
     abstract fun bookDao(): BookDao
     abstract fun contentDao(): ContentDao
     abstract fun authorDao(): AuthorDao
+    abstract fun bookJoinAuthorDao(): BookJoinAuthorDao
 
     companion object {
         @Volatile
