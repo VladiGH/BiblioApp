@@ -10,13 +10,13 @@ import com.avgh.bibliotaller.utilities.TableNameSpace
 interface ContentDao{
 
     @Insert
-    fun inser(element: Content)
+    fun insert(element: Content)
 
     @Delete
-    fun delet(element: Content)
+    fun delete(element: Content)
 
     @Update
-    fun updat(element: Content)
+    fun update(element: Content)
 
     @Query("SELECT * FROM ${TableNameSpace.contentTableName}")
     fun getContents(): LiveData<List<Content>>
