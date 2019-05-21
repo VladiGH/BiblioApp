@@ -5,7 +5,7 @@ import androidx.lifecycle.LiveData
 import com.avgh.bibliotaller.room.dao.BookDao
 import com.avgh.bibliotaller.room.entities.Book
 
-class BibliotecaRepository(private val bookDao: BookDao) {
+class BookRepository(private val bookDao: BookDao) {
 
     @WorkerThread
     fun insert(book: Book) {
