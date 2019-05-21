@@ -5,7 +5,7 @@ import androidx.room.PrimaryKey
 import com.avgh.bibliotaller.utilities.TableNameSpace
 
 @Entity(
-    tableName = TableNameSpace.autorTableName,
+    tableName = TableNameSpace.authorTableName,
     indices = [androidx.room.Index("id")]
 )
 data class Author(

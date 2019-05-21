@@ -1,7 +1,7 @@
 package com.avgh.bibliotaller
 
 import android.content.Context
-import androidx.test.platform.app.InstrumentationRegistry
+import androidx.test.InstrumentationRegistry
 import com.avgh.bibliotaller.room.LibraryDatabase
 import com.avgh.bibliotaller.utilities.BookHolder
 import kotlinx.coroutines.runBlocking

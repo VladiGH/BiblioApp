@@ -17,9 +17,9 @@ interface AuthorDao {
     @Delete
     fun delete(author: Author)
 
-    @Query("SELECT * FROM ${TableNameSpace.autorTableName} WHERE id = :authorId")
+    @Query("SELECT * FROM ${TableNameSpace.authorTableName} WHERE id = :authorId")
     fun getAuthor(authorId: Int): LiveData<Author>
 
-    @Query("SELECT * FROM ${TableNameSpace.autorTableName}")
+    @Query("SELECT * FROM ${TableNameSpace.authorTableName}")
     fun getAuthors(): LiveData<List<Author>>
 }
