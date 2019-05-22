@@ -17,8 +17,7 @@ class BookViewModel(application: Application) : AndroidViewModel(application) {
     val allBooks: LiveData<List<Book>>
 
     init {
-        val booksDao = LibraryDatabase.getDatabase(application).bookDao()
-        repository = BookRepository(booksDao)
+        repository = BookRepository(application)
         allBooks = repository.getAllBooks()
     }
 
