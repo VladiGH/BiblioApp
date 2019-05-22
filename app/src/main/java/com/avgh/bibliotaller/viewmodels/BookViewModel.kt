@@ -12,16 +12,18 @@ import kotlinx.coroutines.launch
 
 class BookViewModel(application: Application) : AndroidViewModel(application) {
 
-    private val repository: BookRepository
+    private val BookRepository: BookRepository
 
     val allBooks: LiveData<List<Book>>
 
     init {
-        repository = BookRepository(application)
-        allBooks = repository.getAllBooks()
+        BookRepository = BookRepository(application)
+        allBooks = BookRepository.getAllBooks()
     }
 
-    fun insert(book: Book) = viewModelScope.launch(Dispatchers.IO) {
-        repository.insert(book)
-    }
+    fun insert(book: Book) = viewModelScope.launch(Dispatchers.IO) { BookRepository.insert(book) }
+
+    fun delete(book: Book) = BookRepository.deleteBook(book)
+
+    fun update(book: Book) = BookRepository.updateBook(book)
 }
