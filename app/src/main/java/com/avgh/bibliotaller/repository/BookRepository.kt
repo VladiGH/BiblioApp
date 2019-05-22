@@ -1,25 +1,28 @@
 package com.avgh.bibliotaller.repository
 
+import android.content.Context
 import androidx.annotation.WorkerThread
 import androidx.lifecycle.LiveData
-import com.avgh.bibliotaller.room.dao.BookDao
+import com.avgh.bibliotaller.room.LibraryDatabase
 import com.avgh.bibliotaller.room.entities.Book
 
-class BookRepository(private val bookDao: BookDao) {
+class BookRepository(context: Context) {
+
+    val db = LibraryDatabase.getDatabase(context)
 
     @WorkerThread
     fun insert(book: Book) {
-        bookDao.insertBook(book)
+        db.bookDao().insertBook(book)
     }
 
-    fun getAllBooks(): LiveData<List<Book>> = bookDao.getBooks()
+    fun getAllBooks(): LiveData<List<Book>> = db.bookDao().getBooks()
 
     fun deleteBook(book: Book) {
-        bookDao.delete(book)
+        db.bookDao().delete(book)
     }
 
     fun updateBook(book: Book) {
-        bookDao.update(book)
+        db.bookDao().update(book)
     }
 
 
