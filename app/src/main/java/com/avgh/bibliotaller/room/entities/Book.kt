@@ -11,7 +11,8 @@ data class Book(
     @PrimaryKey
     val ISBN: String,
     val cover: String,
-    val edition: Int
+    val edition: Int,
+    val favorite: Boolean
 ) {
     @Ignore
     val content = SparseArray<Content>(2)

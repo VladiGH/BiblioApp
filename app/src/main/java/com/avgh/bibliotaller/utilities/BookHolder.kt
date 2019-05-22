@@ -6,11 +6,11 @@ import com.avgh.bibliotaller.room.entities.*
 object BookHolder {
 
     val bookHeld = arrayOf(
-        Book("978-84-08-19740-9", R.drawable.portada_yo_julia.toString(), 1),
-        Book("978-84-670-5248-0", R.drawable.portada_la.toString(), 1),
-        Book("978-84-08-20086-4", R.drawable.nuestro_planeta.toString(),1),
-        Book("978-84-9199-089-5", R.drawable.creatividad.toString(),1),
-        Book("978-84-670-5598-6", R.drawable.murmullo.toString(),1)
+        Book("978-84-08-19740-9", R.drawable.julia.toString(), 1, false),
+        Book("978-84-670-5248-0", R.drawable.portada_la.toString(), 1, false),
+        Book("978-84-08-20086-4", R.drawable.nuestro_planeta.toString(),1, false),
+        Book("978-84-9199-089-5", R.drawable.creatividad.toString(),1, false),
+        Book("978-84-670-5598-6", R.drawable.murmullo.toString(),1, false)
     )
 
     val contentHeld = arrayOf(

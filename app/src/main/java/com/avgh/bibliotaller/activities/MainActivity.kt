@@ -40,12 +40,12 @@ class MainActivity : AppCompatActivity(), BookListFragment.OnFragmentInteraction
         books.add(BookTest(R.drawable.creatividad))
         books.add(BookTest(R.drawable.nuestro_planeta))
         books.add(BookTest(R.drawable.portada_la))
-        books.add(BookTest(R.drawable.portada_yo_julia))
+        books.add(BookTest(R.drawable.julia))
         books.add(BookTest(R.drawable.creatividad))
         books.add(BookTest(R.drawable.murmullo))
         books.add(BookTest(R.drawable.portada_la))
         books.add(BookTest(R.drawable.nuestro_planeta))
-        books.add(BookTest(R.drawable.portada_yo_julia))
+        books.add(BookTest(R.drawable.julia))
 
         val adapter = BookAdapter(books)
 
