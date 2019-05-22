@@ -1,5 +1,6 @@
 package com.avgh.bibliotaller.room.entities
 
+import android.util.SparseArray
 import androidx.room.Entity
 import androidx.room.Ignore
 import androidx.room.PrimaryKey
@@ -13,5 +14,11 @@ data class Book(
     val edition: Int
 ) {
     @Ignore
-    var content: HashMap<Int, Content>? = null
+    val content = SparseArray<Content>(2)
+    @Ignore
+    val author = ArrayList<Author>()
+    @Ignore
+    val editorial = ArrayList<Editorial>()
+    @Ignore
+    val tag = ArrayList<Tag>()
 }
