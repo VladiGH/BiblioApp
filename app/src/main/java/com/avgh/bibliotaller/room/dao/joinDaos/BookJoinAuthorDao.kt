@@ -18,8 +18,8 @@ interface BookJoinAuthorDao {
     fun update(book: Book)
 
     @Query("SELECT * FROM ${TableNameSpace.bookJoinAuthor} WHERE bookId = :bookId")
-    fun getBookJoinAuthor(bookId: String): BookJoinAuthor
+    fun getBookJoinAuthor(bookId: String): List<BookJoinAuthor>
 
     @Query("SELECT * FROM ${TableNameSpace.bookJoinAuthor}")
-    fun getBookJoinAuthor(): BookJoinAuthor
+    fun getBookJoinAuthor(): List<BookJoinAuthor>
 }
