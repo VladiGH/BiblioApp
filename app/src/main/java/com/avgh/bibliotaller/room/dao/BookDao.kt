@@ -17,8 +17,8 @@ interface BookDao {
     @Update
     fun update(book: Book)
 
-    @Query("SELECT * FROM ${TableNameSpace.bookTableName}")
-    fun getBook(): LiveData<Book>
+    @Query("SELECT * FROM ${TableNameSpace.bookTableName} WHERE ISBN = :isbn")
+    fun getBookById(isbn: String): Book
 
     @Query("SELECT * FROM ${TableNameSpace.bookTableName}")
     fun getBooks(): LiveData<List<Book>>
