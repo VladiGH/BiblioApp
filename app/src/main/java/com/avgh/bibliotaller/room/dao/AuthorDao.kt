@@ -22,4 +22,5 @@ interface AuthorDao {
 
     @Query("SELECT * FROM ${TableNameSpace.authorTableName}")
     fun getAuthors(): List<Author>
+
 }

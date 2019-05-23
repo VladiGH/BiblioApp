@@ -2,6 +2,7 @@ package com.avgh.bibliotaller.utilities
 
 import com.avgh.bibliotaller.R
 import com.avgh.bibliotaller.room.entities.*
+import com.avgh.bibliotaller.room.entities.joinEntities.BookJoinAuthor
 
 object BookHolder {
 
@@ -82,9 +83,17 @@ object BookHolder {
 
     val authorHeld = arrayOf(
         Author("Santiago Posteguillo", 0),
-        Author("Karen Viggers", 1),
+        Author("Karen Viggers", 1 ),
         Author("Keith Scholey",2),
         Author("Elkhonon Goldberg", 3)
+    )
+
+    val authorByBook = arrayOf(
+        BookJoinAuthor("978-84-08-19740-9",1),
+        BookJoinAuthor("978-84-670-5248-0",0),
+        BookJoinAuthor("978-84-08-20086-4",2),
+        BookJoinAuthor("978-84-9199-089-5",3),
+        BookJoinAuthor("978-84-670-5598-6",1)
     )
 
     val tagHeld = arrayOf(
