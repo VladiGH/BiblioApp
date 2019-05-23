@@ -1,6 +1,6 @@
 package com.avgh.bibliotaller.utilities
 
-import com.avgh.bibliotaller.test.BookTest
+import com.avgh.bibliotaller.room.entities.Book
 
 object AppConstants{
     val dataset_saveinstance_key = "CLE"
@@ -9,5 +9,5 @@ object AppConstants{
 }
 
 interface MyAdapter {
-    fun changeDataSet(newDataSet : ArrayList<BookTest>)
+    fun changeDataSet(newDataSet : ArrayList<Book>)
 }

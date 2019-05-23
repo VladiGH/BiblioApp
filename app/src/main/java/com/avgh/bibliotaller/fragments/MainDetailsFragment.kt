@@ -6,14 +6,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.avgh.bibliotaller.R
-import com.avgh.bibliotaller.test.BookTest
+import com.avgh.bibliotaller.room.entities.Book
 import kotlinx.android.synthetic.main.fragment_book_detail.view.*
 
 class MainDetailsFragment : Fragment() {
-    var book = BookTest(R.drawable.ic_launcher_background)
+    var book = Book(R.string.n_a_value.toString(), R.drawable.ic_launcher_background.toString(), 1, false)
 
     companion object {
-        fun newInstance(item: BookTest): MainDetailsFragment {
+        fun newInstance(item: Book): MainDetailsFragment {
             val newFragment = MainDetailsFragment()
             newFragment.book = item
             return newFragment
@@ -31,7 +31,7 @@ class MainDetailsFragment : Fragment() {
 
     fun bindData(view: View) {
         if(view != null) {
-            view.land_book_image.setImageResource(book.cover)
+            view.land_book_image.setImageResource(book.cover.toInt())
         }
     }
 }

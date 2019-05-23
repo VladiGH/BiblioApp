@@ -3,14 +3,13 @@ package com.avgh.bibliotaller.activities
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.avgh.bibliotaller.R
-import com.avgh.bibliotaller.test.BookTest
+import com.avgh.bibliotaller.room.entities.Book
 import com.avgh.bibliotaller.utilities.MyAdapter
 import kotlinx.android.synthetic.main.book_item_layout.view.*
 
-class BookAdapter(var items: ArrayList<BookTest>, val clickListener: (BookTest)->Unit) : RecyclerView.Adapter<BookAdapter.ViewHolder>(),
+class BookAdapter(var items: ArrayList<Book>, val clickListener: (Book)->Unit) : RecyclerView.Adapter<BookAdapter.ViewHolder>(),
     MyAdapter {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -25,14 +24,14 @@ class BookAdapter(var items: ArrayList<BookTest>, val clickListener: (BookTest)-
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) = holder.bind(items[position], clickListener)
 
-    override fun changeDataSet(newDataSet: ArrayList<BookTest>) {
+    override fun changeDataSet(newDataSet: ArrayList<Book>) {
         this.items = newDataSet
         notifyDataSetChanged()
     }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
-        fun bind(item: BookTest, clickListener:  (BookTest) -> Unit) = with(itemView){
-            bookImage.setImageResource(item.cover)
+        fun bind(item: Book, clickListener:  (Book) -> Unit) = with(itemView){
+            bookImage.setImageResource(item.cover.toInt())
 
             itemView.setOnClickListener{(clickListener(item))}
         }

@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.avgh.bibliotaller.R
-import com.avgh.bibliotaller.test.BookTest
+import com.avgh.bibliotaller.room.entities.Book
 import com.avgh.bibliotaller.utilities.AppConstants
 import kotlinx.android.synthetic.main.book_item_layout.*
 
@@ -14,12 +14,12 @@ class BookViewer : AppCompatActivity(){
         super.onCreate(savedInstanceState)
         setContentView(R.layout.book_item_layout)
 
-        var receiver: BookTest = intent?.extras?.getParcelable(AppConstants.BOOK_KEY) ?:BookTest(R.drawable.ic_launcher_background)
+        var receiver: Book = intent?.extras?.getParcelable(AppConstants.BOOK_KEY) ?:Book(R.string.n_a_value.toString(), R.drawable.ic_launcher_background.toString(), 1, false)
         init(receiver)
 
     }
 
-    fun init(book: BookTest){
-        bookImage.setImageResource(book.cover)
+    fun init(book: Book){
+        bookImage.setImageResource(book.cover.toInt())
     }
 }

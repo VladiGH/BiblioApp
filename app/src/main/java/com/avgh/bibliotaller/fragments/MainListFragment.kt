@@ -12,19 +12,18 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.avgh.bibliotaller.R
 import com.avgh.bibliotaller.activities.BookAdapter
 import com.avgh.bibliotaller.room.entities.Book
-import com.avgh.bibliotaller.test.BookTest
 import com.avgh.bibliotaller.utilities.AppConstants
 import com.avgh.bibliotaller.utilities.MyAdapter
 import kotlinx.android.synthetic.main.fragment_book_list.view.*
 
 class MainListFragment : Fragment() {
 
-    private lateinit var  bookList :ArrayList<BookTest>
+    private lateinit var  bookList :ArrayList<Book>
     private lateinit var BookAdapter : MyAdapter
     var listenerTools :  ListenerTools? = null
 
     companion object {
-        fun newInstance(dataset : ArrayList<BookTest>): MainListFragment {
+        fun newInstance(dataset : ArrayList<Book>): MainListFragment {
             val newFragment = MainListFragment()
             newFragment.bookList = dataset
             return newFragment
@@ -32,9 +31,9 @@ class MainListFragment : Fragment() {
     }
 
     interface ListenerTools{
-        fun managePortraitItemClick(item: BookTest)
+        fun managePortraitItemClick(item: Book)
 
-        fun manageLandscapeItemClick(item: BookTest)
+        fun manageLandscapeItemClick(item: Book)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -42,7 +41,7 @@ class MainListFragment : Fragment() {
 
         val view = inflater.inflate(R.layout.fragment_book_list, container, false)
 
-        if(savedInstanceState != null) bookList = savedInstanceState.getParcelableArrayList<BookTest>(AppConstants.MAIN_LIST_KEY)!!
+        if(savedInstanceState != null) bookList = savedInstanceState.getParcelableArrayList<Book>(AppConstants.MAIN_LIST_KEY)!!
 
         initRecyclerView(resources.configuration.orientation, view)
 
@@ -57,7 +56,7 @@ class MainListFragment : Fragment() {
             BookAdapter =
                 BookAdapter(
                     bookList,
-                    { item: BookTest -> listenerTools?.managePortraitItemClick(item) })
+                    { item: Book -> listenerTools?.managePortraitItemClick(item) })
 
             container.recyclerView.adapter = BookAdapter as BookAdapter
 
@@ -70,7 +69,7 @@ class MainListFragment : Fragment() {
             BookAdapter =
                 BookAdapter(
                     bookList,
-                    { item: BookTest -> listenerTools?.manageLandscapeItemClick(item) })
+                    { item: Book -> listenerTools?.manageLandscapeItemClick(item) })
 
             container.recyclerView.adapter = BookAdapter as BookAdapter
 
@@ -82,7 +81,7 @@ class MainListFragment : Fragment() {
 
     }
 
-    fun updateCoinAdapter(coinList: ArrayList<BookTest>){ BookAdapter.changeDataSet(coinList) }
+    fun updateBookList(bookList: ArrayList<Book>){ BookAdapter.changeDataSet(bookList) }
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
