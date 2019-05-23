@@ -9,13 +9,13 @@ import com.avgh.bibliotaller.utilities.TableNameSpace
 interface BookJoinAuthorDao {
 
     @Insert
-    fun insert(book: Book)
+    fun insert(element: BookJoinAuthor)
 
     @Delete
-    fun delete(book: Book)
+    fun delete(element: BookJoinAuthor)
 
     @Update
-    fun update(book: Book)
+    fun update(element: BookJoinAuthor)
 
     @Query("SELECT * FROM ${TableNameSpace.bookJoinAuthor} WHERE bookId = :bookId")
     fun getBookJoinAuthor(bookId: String): List<BookJoinAuthor>
