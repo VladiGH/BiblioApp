@@ -60,9 +60,8 @@ class MainActivity : AppCompatActivity(), MainListFragment.ListenerTools {
     override fun managePortraitItemClick(item: BookTest) {
         val bookBundle = Bundle()
 
-        bookBundle.putParcelable("BOOK", item)
+        bookBundle.putParcelable(AppConstants.BOOK_KEY, item)
         startActivity(Intent(this, BookViewer::class.java).putExtras(bookBundle))
-        Log.d("image","Enviado + $bookBundle")
     }
 
     override fun manageLandscapeItemClick(item: BookTest) {

@@ -3,7 +3,7 @@ package com.avgh.bibliotaller.test
 import android.os.Parcel
 import android.os.Parcelable
 
-data class BookTest (var cover: Int) : Parcelable {
+data class BookTest(var cover: Int) : Parcelable {
     constructor(source: Parcel) : this(
         source.readInt()
     )
