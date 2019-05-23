@@ -19,9 +19,9 @@ interface ContentDao {
     fun update(element: Content)
 
     @Query("SELECT * FROM ${TableNameSpace.contentTableName} WHERE bookId =:ISBN")
-    fun getContents(ISBN: String): LiveData<List<Content>>
+    fun getContents(ISBN: String): List<Content>
 
     @Query("SELECT * FROM ${TableNameSpace.contentTableName} WHERE bookId =:ISBN AND language=:language")
-    fun getContent(ISBN: String, language: Int): LiveData<Content>
+    fun getContent(ISBN: String, language: Int): Content
 
 }
