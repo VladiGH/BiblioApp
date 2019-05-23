@@ -20,7 +20,7 @@ class ContentRepository(private val contentDao: ContentDao) {
         contentDao.update(element)
     }
 
-    fun getContents(ISBN: String): LiveData<List<Content>> = contentDao.getContents(ISBN)
+    fun getContents(ISBN: String): List<Content> = contentDao.getContents(ISBN)
 
-    fun getContent(ISBN: String, language: Int): LiveData<Content> = contentDao.getContent(ISBN, language)
+    fun getContent(ISBN: String, language: Int): Content = contentDao.getContent(ISBN, language)
 }
