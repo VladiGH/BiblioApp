@@ -35,12 +35,14 @@ class MainActivity : AppCompatActivity(), MainListFragment.ListenerTools {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+
         val repo = BookRepository(this@MainActivity)
         GlobalScope.launch {
             repo.insert(BookHolder.bookHeld[5])
-            repo.db.contentDao().insert(BookHolder.contentHeld[9])
-            repo.db.authorDao().insert(BookHolder.authorHeld[4])
+            repo.db.contentDao().insert(BookHolder.contentHeld[10])
+            repo.db.authorDao().insert(BookHolder.authorHeld[6])
         }
+
 
         initMainFragment()
 
@@ -89,8 +91,9 @@ class MainActivity : AppCompatActivity(), MainListFragment.ListenerTools {
                 updateBookList(it as ArrayList<Book>)
                 Log.d("List", "_____________________________________")
                 for (repo in books) {
+                    Log.d("List", repo.toString())
                     if(repo.author.size > 0)
-                    Log.d("List", "${repo.ISBN}--Autor: ${repo.author[0]} --Content: ${repo.content.valueAt(Lagunajes.English)} ")
+                        Log.d("List", "${repo.ISBN}--Autor: ${repo.author[0]} --Content: ${repo.content.valueAt(Lagunajes.English)} ")
                 }
             }
         })

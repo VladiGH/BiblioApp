@@ -22,4 +22,7 @@ interface BookDao {
 
     @Query("SELECT * FROM ${TableNameSpace.bookTableName}")
     fun getBooks(): LiveData<List<Book>>
+
+    @Query("SELECT * FROM ${TableNameSpace.bookTableName}")
+    fun getAllBooks(): List<Book>
 }

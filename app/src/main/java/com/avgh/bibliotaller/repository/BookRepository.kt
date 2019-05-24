@@ -52,4 +52,34 @@ class BookRepository(context: Context) {
         return book
     }
 
+
+    fun getBooksByLanguaje(languaje: Int):LiveData<List<Book>>{
+
+        val listBook = mutableListOf<Book>()
+
+        var books = db.bookDao().getAllBooks()
+
+        val mBooksLiveData = MutableLiveData<List<Book>>()
+
+        books.forEach{
+
+            it.apply {
+                it.content.set(languaje, db.contentDao().getContent(it.ISBN, languaje))
+
+                val Authors = db.bookJoinAuthorDao().getBookJoinAuthor(it.ISBN)
+                Authors.forEach{
+                    this.author.add(db.authorDao().getAuthor(it.authorId))
+                }
+
+                //Falta Editoriales
+                //Falta Tags
+            }
+
+            listBook.add(it)
+        }
+
+        mBooksLiveData.value = listBook
+        return mBooksLiveData
+    }
+
 }
