@@ -10,6 +10,6 @@ import com.avgh.bibliotaller.utilities.TableNameSpace
 )
 data class Author(
     val name: String,
-    @PrimaryKey(autoGenerate = true)
+    @PrimaryKey
     val id: Int
 )

@@ -7,6 +7,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.avgh.bibliotaller.room.LibraryDatabase
 import com.avgh.bibliotaller.room.entities.Book
+import com.avgh.bibliotaller.utilities.Lagunajes
 
 class BookRepository(context: Context) {
 
@@ -17,7 +18,18 @@ class BookRepository(context: Context) {
         db.bookDao().insertBook(book)
     }
 
-    fun getAllBooks(): LiveData<List<Book>> = db.bookDao().getBooks()
+    fun getAllBooks(): LiveData<List<Book>> {
+        val data = db.bookDao().getBooks()
+        data.value?.forEach {
+            it.apply {
+                content.set(Lagunajes.English,  db.contentDao().getContent(ISBN, Lagunajes.English))
+                db.bookJoinAuthorDao().getBookJoinAuthor(ISBN).forEach { auth ->
+                    author.add(db.authorDao().getAuthor(auth.authorId))
+                }
+            }
+        }
+        return data
+    }
 
     fun deleteBook(book: Book) {
         db.bookDao().delete(book)
@@ -32,13 +44,12 @@ class BookRepository(context: Context) {
         val join = db.bookJoinAuthorDao().getBookJoinAuthor(ISBN)
         val mUserInfoLiveData = MutableLiveData<Book>()
         book.apply{
-            content.set(languaje, db.contentDao().getContent(ISBN, languaje))
+            value?.content?.set(languaje, db.contentDao().getContent(ISBN, languaje))
             join.forEach{
-                this.author.add(db.authorDao().getAuthor(it.authorId))
+                value?.author?.add(db.authorDao().getAuthor(it.authorId))
             }
         }
-        mUserInfoLiveData.value = book
-        return mUserInfoLiveData
+        return book
     }
 
 }
