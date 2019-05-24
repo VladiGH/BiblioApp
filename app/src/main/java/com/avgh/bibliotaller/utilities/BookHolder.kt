@@ -1,5 +1,6 @@
 package com.avgh.bibliotaller.utilities
 
+import android.content.SharedPreferences
 import com.avgh.bibliotaller.R
 import com.avgh.bibliotaller.room.entities.*
 import com.avgh.bibliotaller.room.entities.joinEntities.BookJoinAuthor
@@ -11,7 +12,12 @@ object BookHolder {
         Book("978-84-670-5248-0", R.drawable.portada_la.toString(), 1, false),
         Book("978-84-08-20086-4", R.drawable.nuestro_planeta.toString(),1, false),
         Book("978-84-9199-089-5", R.drawable.creatividad.toString(),1, false),
-        Book("978-84-670-5598-6", R.drawable.murmullo.toString(),1, false)
+        Book("978-84-670-5598-6", R.drawable.murmullo.toString(),1, false),
+        Book("978-84-234-3040-6", R.drawable.liberalismo.toString(),1,false),
+        Book("978-84-234-3053-6",R.drawable.archipielago.toString(),1, false),
+        Book("978-84-344-3049-5",R.drawable.maspoderoso.toString(),1,false),
+        Book("978-84-17453-24-4", R.drawable.efimera.toString(), 1, false),
+        Book("978-84-17568-41-2",R.drawable.marca.toString(),1,false)
     )
 
     val contentHeld = arrayOf(
@@ -70,14 +76,69 @@ object BookHolder {
             "Leon has always taken care of the people he had around him and the trees in his park. Now, far from his native Bruny Island, south of Tasmania, the young man must find his place in the world, make friends and discover his goal in life. His new life among hard men who are dedicated to the cutting of trees will not be easy. Leon creates new bonds of friendship with Max, a boy hounded by his schoolmates, and Miki, " +
                     "a girl who yearns to be free and escape the yoke of his brother, who condemns her to live in seclusion and unable to move freely. When the interests of his new community collide with the conservation of a millennial eucalyptus, Leon must decide what it means to be a good man.",
             "978-84-670-5598-6"
+        ),
+        Content(
+            10, Lagunajes.Espanish, "Liberalismo",
+            "En este libro, Juan Ramón Rallo, uno de nuestros más valiosos pensadores liberales, expone cuáles son los diez principios nucleares del liberalismo para así clarificar su significado actual. Según Rallo, el liberalismo es una filosofía política minimalista que no pretende establecer de manera rígida lo que está bien y lo que está mal en todos los aspectos de nuestra existencia, sino que únicamente aspira a descubrir " +
+                    "cuál es el marco jurídico necesario para que cada uno pueda vivir su propia vida sin más limitación que la de respetar a los demás. ",
+            "978-84-234-3040-6"
+        ),
+        Content(
+            11, Lagunajes.English, "Liberalism",
+            "In this book, Juan Ramón Rallo, one of our most valuable liberal thinkers, explains what the ten core principles of liberalism are in order to clarify their current meaning. According to Rallo, liberalism is a minimalist political philosophy that does not intend to rigidly establish what is right and wrong in all aspects of our existence, but only aspires to discover what is the legal framework necessary for each one " +
+                    "He can live his own life with no other limitation than respecting others.",
+            "978-84-234-3040-6"
+        ),
+        Content(
+            12, Lagunajes.Espanish, "El archipiélago liberal",
+            "La historia de las sociedades es una historia de cooperación humana y, al mismo tiempo, un relato de conflictos sucesivos. Si bien la posibilidad de una coexistencia pacífica nunca ha sido cuestionada, la durabilidad y sostenibilidad de dicha armonía siempre ha sido incierta. La filosofía política, por tanto, debe ofrecernos ideas y reflexiones sobre los fundamentos que asientan, o pueden llegar a asentar, el orden social.",
+            "978-84-234-3053-6"
+        ),
+        Content(
+            13, Lagunajes.English,"The Liberal archipelago",
+            "The history of societies is a history of human cooperation and, at the same time, a story of successive conflicts. While the possibility of peaceful coexistence has never been questioned, the durability and sustainability of such harmony has always been uncertain. The political philosophy, therefore, must offer us ideas and reflections on the foundations that settle, or may come to settle, the social order.",
+            "978-84-234-3053-6"
+        ),
+        Content(
+            14, Lagunajes.Espanish,"El dios más poderoso",
+            "Omnipresente y omnipotente, plural e infinito, un pequeño dios que actúa de Poeta, un gran poeta que actúa de Dios. Todo eso fue Walt Whitman. Y todo eso aparece en este libro que capta de manera extraordinaria el espíritu y la humanidad del —primero que todo— periodista y narrador, del ciudadano de Brooklyn y amante de Manhattan, del viajero que conoció el Sur esclavista y el paisaje canadiense; en definitiva, del poeta " +
+                    "que alzó el canto de sí mismo se hizo de la alegría de vivir, la igualdad, la solidaridady el universalismo sus señas más representativas.",
+            "978-84-344-3049-5"
+        ),
+        Content(
+            15, Lagunajes.English,"The most powerful god",
+            "Omnipresent and omnipotent, plural and infinite, a small god who acts as a Poet, a great poet who acts as God. All that was Walt Whitman. And all that appears in this book that captures in an extraordinary way the spirit and humanity of the first, first and foremost, journalist and narrator, of the Brooklyn citizen and lover of Manhattan, of the traveler who knew the slave South and the Canadian landscape; in short, " +
+                    "the poet who raised the chant of himself and made the joy of life, equality, solidarity and universalism his most representative signs.",
+            "978-84-344-3049-5"
+        ),
+        Content(
+            16, Lagunajes.Espanish,"Efimera",
+            "Efímera es el nombre de un insecto que vive sólo 24 horas, que no tiene pues los días contados, sino las horas. Y lo efímero es el material del que se nutre este poemario, una reflexión oética sobre lo breve en todas sus facetas, sobre aquello que no dura. El lector encontrará poemas dedicados a la pompa de jabón, pero también a la escarcha, cómo no a la euforia o desde luego al necesariamente efímero muñeco de nieve. " +
+                    "¿No lo somos al cabo nosotros mismos, no es lo pasajero lo que nos caracteriza? La muerte, el triunfo de la especie sobre el individuo, es cuanto nos define y ella es quien vuelve efímera nuestra vida, por mucho que se prolongue, por mucho que tratemos de alargarla. Somos temporales, fugaces, finitos.",
+            "978-84-344-3049-5"
+        ),
+        Content(
+            17, Lagunajes.Espanish,"Y tú, ¿qué marca eres?",
+            "En su primera edición, el objetivo de este libro era analizar cómo, aplicando la marca personal, podíamos desarrollarnos profesionalmente en un entorno donde las relaciones laborales comenzaban a hacerse más ﬂuidas. Ha pasado casi una década desde su publicación y este objetivo se mantiene, pero el contexto ha cambiado. En esta nueva edición permanecen los conceptos clave, pero también aparecen otros nuevos relativos al entorno laboral al que nos enfrentamos en la actualidad.",
+            "978-84-17568-41-2"
+        ),
+        Content(
+            18,Lagunajes.English, "And you, what brand are you?",
+            "In its first edition, the aim of this book was to analyze how, applying the personal brand, we could develop professionally in an environment where labor relations began to become more fluid. Almost a decade has passed since its publication and this objective remains, but the context has changed. In this new edition, the key concepts remain, but there are also new ones related to the work environment that we are facing today.",
+            "978-84-17568-41-2"
         )
+
     )
 
     val editorialHeld = arrayOf(
         Editorial(0, "Editorial Planeta", "2018", "Santiago Posteguillo"),
         Editorial(1, "Espasa", "2012", "Madrid"),
         Editorial(2, "GeoPlaneta", "2019", "Barcelona"),
-        Editorial(3, "Editorial Critica", "2019", "Santiago de Chile")
+        Editorial(3, "Editorial Critica", "2019", "Santiago de Chile"),
+        Editorial(4,"Deusto","2017","Washington"),
+        Editorial(5, "Editorial Ariel", "2014", "Ciudad de Mexico"),
+        Editorial(6, "Fundación José Manuel Lara", "2019","Cartagena"),
+        Editorial(7,"Alienta Editorial","2017", "Barcelona")
 
     )
 
@@ -85,7 +146,12 @@ object BookHolder {
         Author("Santiago Posteguillo", 0),
         Author("Karen Viggers", 1 ),
         Author("Keith Scholey",2),
-        Author("Elkhonon Goldberg", 3)
+        Author("Elkhonon Goldberg", 3),
+        Author("Juan Ramón Rallo", 4),
+        Author("Chandran Kukathas", 5),
+        Author("Toni Montesinos", 6),
+        Author("Miguel Albero",7),
+        Author("Neus Arqués",8)
     )
 
     val authorByBook = arrayOf(
@@ -93,7 +159,12 @@ object BookHolder {
         BookJoinAuthor("978-84-670-5248-0",0),
         BookJoinAuthor("978-84-08-20086-4",2),
         BookJoinAuthor("978-84-9199-089-5",3),
-        BookJoinAuthor("978-84-670-5598-6",1)
+        BookJoinAuthor("978-84-670-5598-6",1),
+        BookJoinAuthor("978-84-234-3040-6", 4),
+        BookJoinAuthor("978-84-234-3053-6", 5),
+        BookJoinAuthor("978-84-344-3049-5",6),
+        BookJoinAuthor("978-84-344-3049-5",7),
+        BookJoinAuthor("978-84-17568-41-2",8)
     )
 
     val tagHeld = arrayOf(
@@ -105,7 +176,13 @@ object BookHolder {
         Tag(5, "Ecologia"),
         Tag(6,"Cerebro"),
         Tag(7, "Mente"),
-        Tag(8, "Contemporanea")
+        Tag(8, "Contemporanea"),
+        Tag(9, "Actualidad"),
+        Tag(10, "Politica"),
+        Tag(11, "Economia"),
+        Tag(12,"Ciencias humanas y sociales"),
+        Tag(13,"Poesia"),
+        Tag(14,"Empresa")
     )
 
 
