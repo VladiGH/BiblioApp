@@ -30,7 +30,9 @@ class BookViewModel(application: Application) : AndroidViewModel(application) {
 
     fun insert(book: Book) = viewModelScope.launch(Dispatchers.IO) { BookRepository.insert(book) }
 
-    fun getBooks() = viewModelScope.launch(Dispatchers.IO) {allBooks = BookRepository.getBooksByLanguaje(Lagunajes.English) }
+    fun getBooks() = viewModelScope.launch(Dispatchers.IO) {
+        BookRepository.getAllBooks()
+    }
 
     fun delete(book: Book) = BookRepository.deleteBook(book)
 

@@ -18,18 +18,7 @@ class BookRepository(context: Context) {
         db.bookDao().insertBook(book)
     }
 
-    fun getAllBooks(): LiveData<List<Book>> {
-        val data = db.bookDao().getBooks()
-        data.value?.forEach {
-            it.apply {
-                content.set(Lagunajes.English,  db.contentDao().getContent(ISBN, Lagunajes.English))
-                db.bookJoinAuthorDao().getBookJoinAuthor(ISBN).forEach { auth ->
-                    author.add(db.authorDao().getAuthor(auth.authorId))
-                }
-            }
-        }
-        return data
-    }
+    fun getAllBooks(): LiveData<List<Book>> = db.bookDao().getBooks()
 
     fun deleteBook(book: Book) {
         db.bookDao().delete(book)
