@@ -3,6 +3,7 @@ package com.avgh.bibliotaller.utilities
 import com.avgh.bibliotaller.R
 import com.avgh.bibliotaller.room.entities.*
 import com.avgh.bibliotaller.room.entities.joinEntities.BookJoinAuthor
+import com.avgh.bibliotaller.room.entities.joinEntities.BookJoinTag
 
 object BookHolder {
 
@@ -164,6 +165,25 @@ object BookHolder {
         BookJoinAuthor("978-84-344-3049-5",6),
         BookJoinAuthor("978-84-344-3049-5",7),
         BookJoinAuthor("978-84-17568-41-2",8)
+    )
+
+    val bookByTag = arrayOf(
+        BookJoinTag("978-84-08-19740-9",0),
+        BookJoinTag("978-84-08-19740-9",1),
+        BookJoinTag("978-84-670-5248-0",2),
+        BookJoinTag("978-84-670-5248-0",3),
+        BookJoinTag("978-84-08-20086-4",4),
+        BookJoinTag("978-84-08-20086-4",5),
+        BookJoinTag("978-84-9199-089-5",6),
+        BookJoinTag("978-84-9199-089-5",7),
+        BookJoinTag("978-84-670-5598-6",8),
+        BookJoinTag("978-84-234-3040-6",9),
+        BookJoinTag("978-84-234-3040-6",10),
+        BookJoinTag("978-84-234-3053-6",10),
+        BookJoinTag("978-84-234-3053-6",11),
+        BookJoinTag("978-84-344-3049-5",12),
+        BookJoinTag("978-84-17453-24-4",13),
+        BookJoinTag("978-84-17568-41-2",14)
     )
 
     val tagHeld = arrayOf(
