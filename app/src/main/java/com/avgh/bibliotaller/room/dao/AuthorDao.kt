@@ -1,6 +1,5 @@
 package com.avgh.bibliotaller.room.dao
 
-import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.avgh.bibliotaller.room.entities.Author
 import com.avgh.bibliotaller.utilities.TableNameSpace

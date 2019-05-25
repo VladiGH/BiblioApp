@@ -6,22 +6,20 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.avgh.bibliotaller.R
 import com.avgh.bibliotaller.fragments.MainDetailsFragment
 import com.avgh.bibliotaller.fragments.MainListFragment
-import com.avgh.bibliotaller.repository.BookRepository
+import com.avgh.bibliotaller.room.LibraryDatabase
 import com.avgh.bibliotaller.room.entities.Book
 import com.avgh.bibliotaller.utilities.AppConstants
 import com.avgh.bibliotaller.utilities.BookHolder
-import com.avgh.bibliotaller.utilities.Lagunajes
+import com.avgh.bibliotaller.utilities.Languages
 import com.avgh.bibliotaller.viewmodels.BookViewModel
 import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import java.lang.Exception
 
 class MainActivity : AppCompatActivity(), MainListFragment.ListenerTools {
 
@@ -35,17 +33,10 @@ class MainActivity : AppCompatActivity(), MainListFragment.ListenerTools {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-
-        val repo = BookRepository(this@MainActivity)
         GlobalScope.launch {
-            repo.insert(BookHolder.bookHeld[5])
-            repo.db.contentDao().insert(BookHolder.contentHeld[10])
-            repo.db.authorDao().insert(BookHolder.authorHeld[6])
+            insertion()
         }
-
-
         initMainFragment()
-
     }
 
 
@@ -86,14 +77,17 @@ class MainActivity : AppCompatActivity(), MainListFragment.ListenerTools {
 
         changeFragment(resource, mainFragment)
 
-        bookViewModel.allBooks.observe(this, Observer { books ->
+        bookViewModel.books?.observe(this, Observer { books ->
             books?.let {
                 updateBookList(it as ArrayList<Book>)
                 Log.d("List", "_____________________________________")
                 for (repo in books) {
                     Log.d("List", repo.toString())
-                    if(repo.author.size > 0)
-                        Log.d("List", "${repo.ISBN}--Autor: ${repo.author[0]} --Content: ${repo.content.valueAt(Lagunajes.English)} ")
+                    if (repo.author.size > 0)
+                        Log.d(
+                            "List",
+                            "${repo.ISBN}--Autor: ${repo.author[0]}"
+                        )
                 }
             }
         })
@@ -107,6 +101,23 @@ class MainActivity : AppCompatActivity(), MainListFragment.ListenerTools {
 
     private fun changeFragment(id: Int, frag: Fragment) {
         supportFragmentManager.beginTransaction().replace(id, frag).commit()
+    }
+
+    private fun insertion() {
+        val db = LibraryDatabase.getDatabase(this@MainActivity)
+        try {
+            BookHolder.bookHeld.forEach {
+                db.bookDao().insertBook(it)
+            }
+            BookHolder.authorHeld.forEach {
+                db.authorDao().insert(it)
+            }
+            BookHolder.authorByBook.forEach {
+                db.bookJoinAuthorDao().insert(it)
+            }
+        } catch (e: Exception){
+            Log.d("MainAcitivity", "ya estaba dentro o fail")
+        }
     }
 
 }

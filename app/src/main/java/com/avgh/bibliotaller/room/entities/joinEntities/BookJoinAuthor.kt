@@ -8,7 +8,7 @@ import com.avgh.bibliotaller.utilities.TableNameSpace
 
 @Entity(
     tableName = TableNameSpace.bookJoinAuthor,
-    primaryKeys = ["bookId", "authorId"],
+    primaryKeys = ["bookId", "id"],
     foreignKeys = [
         ForeignKey(
             entity = Book::class,
@@ -18,11 +18,11 @@ import com.avgh.bibliotaller.utilities.TableNameSpace
         ForeignKey(
             entity = Author::class,
             parentColumns = ["id"],
-            childColumns = ["authorId"]
+            childColumns = ["id"]
         )
     ]
 )
 data class BookJoinAuthor(
     val bookId: String,
-    val authorId: Int
+    val id: Int
 )
