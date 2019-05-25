@@ -10,7 +10,7 @@ import com.avgh.bibliotaller.utilities.TableNameSpace
     indices = [Index("id")]
 )
 data class Tag(
-    @PrimaryKey(autoGenerate = true)
+    @PrimaryKey
     val id: Int,
     val name: String
 )

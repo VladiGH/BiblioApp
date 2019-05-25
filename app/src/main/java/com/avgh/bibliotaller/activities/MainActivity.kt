@@ -16,9 +16,7 @@ import com.avgh.bibliotaller.room.entities.Book
 import com.avgh.bibliotaller.utilities.AppConstants
 import com.avgh.bibliotaller.utilities.BookHolder
 import com.avgh.bibliotaller.viewmodels.BookViewModel
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.*
 import java.lang.Exception
 
 class MainActivity : AppCompatActivity(), MainListFragment.ListenerTools {
@@ -80,7 +78,6 @@ class MainActivity : AppCompatActivity(), MainListFragment.ListenerTools {
                 updateBookList(it as ArrayList<Book>)
                 Log.d("List", "_____________________________________")
                 for (repo in books) {
-                    Log.d("List", repo.toString())
                     if (repo.author.size > 0)
                         Log.d(
                             "List",
@@ -118,9 +115,9 @@ class MainActivity : AppCompatActivity(), MainListFragment.ListenerTools {
         BookHolder.tagHeld.forEach {
             db.tagDao().insert(it)
         }
-//        BookHolder.bookByTag.forEach {
-//            db.bookJoinTag().insert(it)
-//        }
+        BookHolder.bookByTag.forEach {
+            db.bookJoinTag().insert(it)
+        }
         BookHolder.editorialHeld.forEach {
             db.editorialDao().insert(it)
         }

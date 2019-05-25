@@ -52,7 +52,8 @@ abstract class LibraryDatabase : RoomDatabase() {
                     context.applicationContext,
                     LibraryDatabase::class.java,
                     "library_database"
-                ).build()
+                ).fallbackToDestructiveMigration()
+                    .build()
                 INSTANCE = instance
                 return instance
             }

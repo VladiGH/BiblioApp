@@ -13,13 +13,13 @@ import kotlinx.coroutines.launch
 
 class BookViewModel(application: Application) : AndroidViewModel(application) {
 
+    private val bookRepository: BookRepository = BookRepository(application)
+
     init {
         viewModelScope.launch(Dispatchers.IO) {
             books = MutableLiveData(bookRepository.getFullBooks(Languages.ENGLISH))
         }
     }
-
-    private val bookRepository: BookRepository = BookRepository(application)
 
     var books: LiveData<List<Book>>? = null
 
