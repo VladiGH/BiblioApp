@@ -58,6 +58,22 @@ class MainActivity : AppCompatActivity(), MainListFragment.ListenerTools {
 
         bookViewModel = ViewModelProviders.of(this).get(BookViewModel::class.java)
 
+        bookViewModel.books?.observe(this, Observer { books ->
+            books?.let {
+                updateBookList(it as ArrayList<Book>)
+                for (book in books) {
+                    Log.d("MainActivity", "-----------------------------------------------")
+                    Log.d("MainActivity", book.ISBN)
+                    Log.d("MainActivity", book.edition.toString())
+                    Log.d("MainActivity", "${book.author}")
+                    Log.d("MainActivity", "${book.editorial}")
+                    Log.d("MainActivity", "${book.tag}")
+                    Log.d("MainActivity", book.content.valueAt(Languages.ENGLISH).title)
+                    Log.d("MainActivity", book.content.valueAt(Languages.ENGLISH).resume)
+                }
+            }
+        })
+
         mainFragment = MainListFragment.newInstance(bookList)
 
 
@@ -74,21 +90,6 @@ class MainActivity : AppCompatActivity(), MainListFragment.ListenerTools {
 
         changeFragment(resource, mainFragment)
 
-        bookViewModel.books?.observe(this, Observer { books ->
-            books?.let {
-                updateBookList(it as ArrayList<Book>)
-                for (book in books) {
-                    Log.d("MainActivity", "-----------------------------------------------")
-                    Log.d("MainActivity", book.ISBN)
-                    Log.d("MainActivity", book.edition.toString())
-                    Log.d("MainActivity", "${book.author}")
-                    Log.d("MainActivity", "${book.editorial}")
-                    Log.d("MainActivity", "${book.tag}")
-                    Log.d("MainActivity", book.content.valueAt(Languages.ENGLISH).title)
-                    Log.d("MainActivity", book.content.valueAt(Languages.ENGLISH).resume)
-                }
-            }
-        })
 
     }
 

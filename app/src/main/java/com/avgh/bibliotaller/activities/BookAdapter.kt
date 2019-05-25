@@ -6,8 +6,10 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.avgh.bibliotaller.R
 import com.avgh.bibliotaller.room.entities.Book
+import com.avgh.bibliotaller.utilities.Languages
 import com.avgh.bibliotaller.utilities.MyAdapter
 import kotlinx.android.synthetic.main.book_item_layout.view.*
+import kotlinx.android.synthetic.main.fragment_book_detail.view.*
 
 class BookAdapter(var items: ArrayList<Book>, val clickListener: (Book)->Unit) : RecyclerView.Adapter<BookAdapter.ViewHolder>(),
     MyAdapter {
