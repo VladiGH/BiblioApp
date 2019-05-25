@@ -3,6 +3,7 @@ package com.avgh.bibliotaller.utilities
 import com.avgh.bibliotaller.R
 import com.avgh.bibliotaller.room.entities.*
 import com.avgh.bibliotaller.room.entities.joinEntities.BookJoinAuthor
+import com.avgh.bibliotaller.room.entities.joinEntities.BookJoinEditorial
 import com.avgh.bibliotaller.room.entities.joinEntities.BookJoinTag
 
 object BookHolder {
@@ -139,6 +140,20 @@ object BookHolder {
         Editorial(5, "Editorial Ariel", "2014", "Ciudad de Mexico"),
         Editorial(6, "Fundación José Manuel Lara", "2019","Cartagena"),
         Editorial(7,"Alienta Editorial","2017", "Barcelona")
+
+    )
+
+    val bookByEditorial = arrayOf(
+        BookJoinEditorial("978-84-08-19740-9",0),
+        BookJoinEditorial("978-84-670-5248-0",1),
+        BookJoinEditorial("978-84-08-20086-4",2),
+        BookJoinEditorial("978-84-9199-089-5",3),
+        BookJoinEditorial("978-84-670-5598-6",4),
+        BookJoinEditorial("978-84-234-3040-6",5),
+        BookJoinEditorial("978-84-234-3053-6",6),
+        BookJoinEditorial("978-84-344-3049-5",7),
+        BookJoinEditorial("978-84-17453-24-4",1),
+        BookJoinEditorial("978-84-17568-41-2",2)
 
     )
 
