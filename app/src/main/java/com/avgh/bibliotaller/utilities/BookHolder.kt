@@ -116,15 +116,20 @@ object BookHolder {
             16, Languages.SPANISH,"Efimera",
             "Efímera es el nombre de un insecto que vive sólo 24 horas, que no tiene pues los días contados, sino las horas. Y lo efímero es el material del que se nutre este poemario, una reflexión oética sobre lo breve en todas sus facetas, sobre aquello que no dura. El lector encontrará poemas dedicados a la pompa de jabón, pero también a la escarcha, cómo no a la euforia o desde luego al necesariamente efímero muñeco de nieve. " +
                     "¿No lo somos al cabo nosotros mismos, no es lo pasajero lo que nos caracteriza? La muerte, el triunfo de la especie sobre el individuo, es cuanto nos define y ella es quien vuelve efímera nuestra vida, por mucho que se prolongue, por mucho que tratemos de alargarla. Somos temporales, fugaces, finitos.",
-            "978-84-344-3049-5"
+            "978-84-17453-24-4"
+        ), Content(
+            17, Languages.ENGLISH, "ephemeral",
+            "Ephemeral is the name of an insect that lives only 24 hours, which does not have the days counted, but the hours. And the ephemeral is the material from which this book of poems is nurtured, an oetic reflection on the brief in all its facets, on that which does not last. The reader will find poems dedicated to the soap bubble, but also to the frost, how not to the euphoria or of course to the necessarily ephemeral snowman. " +
+                    "Are we not, after all, ourselves, is not it the passing that characterizes us? Death, the triumph of the species over the individual, is what defines us and it is who makes our life ephemeral, no matter how long it lasts, no matter how much we try to extend it. We are temporary, fleeting, finite.",
+            "978-84-17453-24-4"
         ),
         Content(
-            17, Languages.SPANISH,"Y tú, ¿qué marca eres?",
+            18, Languages.SPANISH,"Y tú, ¿qué marca eres?",
             "En su primera edición, el objetivo de este libro era analizar cómo, aplicando la marca personal, podíamos desarrollarnos profesionalmente en un entorno donde las relaciones laborales comenzaban a hacerse más ﬂuidas. Ha pasado casi una década desde su publicación y este objetivo se mantiene, pero el contexto ha cambiado. En esta nueva edición permanecen los conceptos clave, pero también aparecen otros nuevos relativos al entorno laboral al que nos enfrentamos en la actualidad.",
             "978-84-17568-41-2"
         ),
         Content(
-            18,Languages.ENGLISH, "And you, what brand are you?",
+            19,Languages.ENGLISH, "And you, what brand are you?",
             "In its first edition, the aim of this book was to analyze how, applying the personal brand, we could develop professionally in an environment where labor relations began to become more fluid. Almost a decade has passed since its publication and this objective remains, but the context has changed. In this new edition, the key concepts remain, but there are also new ones related to the work environment that we are facing today.",
             "978-84-17568-41-2"
         )
