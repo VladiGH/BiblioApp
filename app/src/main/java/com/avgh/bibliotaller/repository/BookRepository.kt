@@ -28,7 +28,9 @@ class BookRepository(context: Context) {
             db.bookJoinAuthorDao().getBookJoinAuthor(it.ISBN).forEach { key ->
                 it.author.add(db.authorDao().getAuthor(key.id))
             }
+            db.bookJoinTag().getBookJoinTag(it.ISBN)
             it.content.put(language, db.contentDao().getContent(it.ISBN, language))
+            //db.bookJoinEditorial().getEditorialById()
         }
         return books
     }

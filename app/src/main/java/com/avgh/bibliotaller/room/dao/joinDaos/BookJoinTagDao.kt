@@ -17,7 +17,7 @@ interface BookJoinTagDao {
     fun update(element: BookJoinTag)
 
     @Query("SELECT * FROM ${TableNameSpace.bookJoinTagTableName} WHERE bookId = :bookId")
-    fun getBookJoinTag(bookId: String): BookJoinTag
+    fun getBookJoinTag(bookId: String): List<BookJoinTag>
 
     @Query("SELECT * FROM ${TableNameSpace.bookJoinTagTableName}")
     fun getBookJoinTags(): List<BookJoinTag>
