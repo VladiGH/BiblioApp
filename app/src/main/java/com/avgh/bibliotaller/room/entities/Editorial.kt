@@ -6,7 +6,7 @@ import com.avgh.bibliotaller.utilities.TableNameSpace
 
 @Entity(tableName = TableNameSpace.editorialTableName)
 data class Editorial(
-    @PrimaryKey(autoGenerate = true)
+    @PrimaryKey
     val id: Int,
     val name: String,
     val year: String,

@@ -15,6 +15,7 @@ import com.avgh.bibliotaller.room.LibraryDatabase
 import com.avgh.bibliotaller.room.entities.Book
 import com.avgh.bibliotaller.utilities.AppConstants
 import com.avgh.bibliotaller.utilities.BookHolder
+import com.avgh.bibliotaller.utilities.Languages
 import com.avgh.bibliotaller.viewmodels.BookViewModel
 import kotlinx.coroutines.*
 import java.lang.Exception
@@ -76,13 +77,15 @@ class MainActivity : AppCompatActivity(), MainListFragment.ListenerTools {
         bookViewModel.books?.observe(this, Observer { books ->
             books?.let {
                 updateBookList(it as ArrayList<Book>)
-                Log.d("List", "_____________________________________")
-                for (repo in books) {
-                    if (repo.author.size > 0)
-                        Log.d(
-                            "List",
-                            "${repo.ISBN}--Autor: ${repo.author[0]}"
-                        )
+                for (book in books) {
+                    Log.d("MainActivity", "-----------------------------------------------")
+                    Log.d("MainActivity", book.ISBN)
+                    Log.d("MainActivity", book.edition.toString())
+                    Log.d("MainActivity", "${book.author}")
+                    Log.d("MainActivity", "${book.editorial}")
+                    Log.d("MainActivity", "${book.tag}")
+                    Log.d("MainActivity", book.content.valueAt(Languages.ENGLISH).title)
+                    Log.d("MainActivity", book.content.valueAt(Languages.ENGLISH).resume)
                 }
             }
         })
@@ -120,6 +123,9 @@ class MainActivity : AppCompatActivity(), MainListFragment.ListenerTools {
         }
         BookHolder.editorialHeld.forEach {
             db.editorialDao().insert(it)
+        }
+        BookHolder.bookByEditorial.forEach {
+            db.bookJoinEditorial().insert(it)
         }
     }
 

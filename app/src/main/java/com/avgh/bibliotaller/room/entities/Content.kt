@@ -15,7 +15,7 @@ import com.avgh.bibliotaller.utilities.TableNameSpace
     onDelete = CASCADE
 )
 data class Content(
-    @PrimaryKey(autoGenerate = true)
+    @PrimaryKey
     val id: Int,
     val language: Int,
     val title: String,
