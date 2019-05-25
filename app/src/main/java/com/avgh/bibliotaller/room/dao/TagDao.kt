@@ -1,4 +1,4 @@
-package com.avgh.bibliotaller.room.dao.joinDaos
+package com.avgh.bibliotaller.room.dao
 
 import androidx.room.*
 import com.avgh.bibliotaller.room.entities.Tag

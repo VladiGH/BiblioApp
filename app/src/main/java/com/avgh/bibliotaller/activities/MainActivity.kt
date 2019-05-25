@@ -118,6 +118,10 @@ class MainActivity : AppCompatActivity(), MainListFragment.ListenerTools {
                 db.contentDao().insert(it)
             }
 
+            BookHolder.tagHeld.forEach {
+                db.tagDao().insert(it)
+            }
+
         } catch (e: Exception) {
             Log.d("MainAcitivity", "ya estaba dentro o fail")
         }
