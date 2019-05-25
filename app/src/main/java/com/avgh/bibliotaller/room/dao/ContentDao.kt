@@ -9,7 +9,7 @@ import com.avgh.bibliotaller.utilities.TableNameSpace
 @Dao
 interface ContentDao {
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     fun insert(element: Content)
 
     @Delete

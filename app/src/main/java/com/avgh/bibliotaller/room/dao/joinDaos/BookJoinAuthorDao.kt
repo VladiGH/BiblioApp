@@ -7,7 +7,7 @@ import com.avgh.bibliotaller.utilities.TableNameSpace
 @Dao
 interface BookJoinAuthorDao {
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     fun insert(element: BookJoinAuthor)
 
     @Delete

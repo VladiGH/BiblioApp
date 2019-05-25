@@ -15,7 +15,6 @@ import com.avgh.bibliotaller.room.LibraryDatabase
 import com.avgh.bibliotaller.room.entities.Book
 import com.avgh.bibliotaller.utilities.AppConstants
 import com.avgh.bibliotaller.utilities.BookHolder
-import com.avgh.bibliotaller.utilities.Languages
 import com.avgh.bibliotaller.viewmodels.BookViewModel
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -115,7 +114,11 @@ class MainActivity : AppCompatActivity(), MainListFragment.ListenerTools {
             BookHolder.authorByBook.forEach {
                 db.bookJoinAuthorDao().insert(it)
             }
-        } catch (e: Exception){
+            BookHolder.contentHeld.forEach {
+                db.contentDao().insert(it)
+            }
+
+        } catch (e: Exception) {
             Log.d("MainAcitivity", "ya estaba dentro o fail")
         }
     }
