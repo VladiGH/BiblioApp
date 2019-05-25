@@ -18,6 +18,7 @@ import com.avgh.bibliotaller.utilities.BookHolder
 import com.avgh.bibliotaller.viewmodels.BookViewModel
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 import java.lang.Exception
 
 class MainActivity : AppCompatActivity(), MainListFragment.ListenerTools {
@@ -31,13 +32,11 @@ class MainActivity : AppCompatActivity(), MainListFragment.ListenerTools {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
         GlobalScope.launch {
             insertion()
         }
         initMainFragment()
     }
-
 
     override fun onSaveInstanceState(outState: Bundle) {
         outState.putParcelableArrayList(AppConstants.dataset_saveinstance_key, bookList)
@@ -104,26 +103,26 @@ class MainActivity : AppCompatActivity(), MainListFragment.ListenerTools {
 
     private fun insertion() {
         val db = LibraryDatabase.getDatabase(this@MainActivity)
-        try {
-            BookHolder.bookHeld.forEach {
-                db.bookDao().insertBook(it)
-            }
-            BookHolder.authorHeld.forEach {
-                db.authorDao().insert(it)
-            }
-            BookHolder.authorByBook.forEach {
-                db.bookJoinAuthorDao().insert(it)
-            }
-            BookHolder.contentHeld.forEach {
-                db.contentDao().insert(it)
-            }
-
-            BookHolder.tagHeld.forEach {
-                db.tagDao().insert(it)
-            }
-
-        } catch (e: Exception) {
-            Log.d("MainAcitivity", "ya estaba dentro o fail")
+        BookHolder.bookHeld.forEach {
+            db.bookDao().insertBook(it)
+        }
+        BookHolder.authorHeld.forEach {
+            db.authorDao().insert(it)
+        }
+        BookHolder.authorByBook.forEach {
+            db.bookJoinAuthorDao().insert(it)
+        }
+        BookHolder.contentHeld.forEach {
+            db.contentDao().insert(it)
+        }
+        BookHolder.tagHeld.forEach {
+            db.tagDao().insert(it)
+        }
+//        BookHolder.bookByTag.forEach {
+//            db.bookJoinTag().insert(it)
+//        }
+        BookHolder.editorialHeld.forEach {
+            db.editorialDao().insert(it)
         }
     }
 

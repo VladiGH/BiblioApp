@@ -1,26 +1,24 @@
 package com.avgh.bibliotaller.room.dao.joinDaos
 
-import androidx.lifecycle.LiveData
 import androidx.room.*
-import com.avgh.bibliotaller.room.entities.Book
-import com.avgh.bibliotaller.room.entities.Tag
+import com.avgh.bibliotaller.room.entities.joinEntities.BookJoinTag
 import com.avgh.bibliotaller.utilities.TableNameSpace
 
 @Dao
 interface BookJoinTagDao {
 
-    @Insert
-    fun insert(book: Book, tag: Tag)
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    fun insert(element: BookJoinTag)
 
     @Delete
-    fun delete(book: Book)
+    fun delete(element: BookJoinTag)
 
     @Update
-    fun update(book: Book)
+    fun update(element: BookJoinTag)
 
-    @Query("SELECT * FROM ${TableNameSpace.bookTableName} WHERE ISBN = :bookId")
-    fun getBookJoinTag(bookId: String): LiveData<Book>
+    @Query("SELECT * FROM ${TableNameSpace.bookJoinTagTableName} WHERE bookId = :bookId")
+    fun getBookJoinTag(bookId: String): BookJoinTag
 
-    @Query("SELECT * FROM ${TableNameSpace.bookTableName}")
-    fun getBookJoinTags(): LiveData<List<Book>>
+    @Query("SELECT * FROM ${TableNameSpace.bookJoinTagTableName}")
+    fun getBookJoinTags(): List<BookJoinTag>
 }

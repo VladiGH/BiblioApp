@@ -17,5 +17,5 @@ interface TagDao {
     fun delete(tag: Tag)
 
     @Query("SELECT * FROM ${TableNameSpace.tagTableName} WHERE id = :id")
-    fun getTagById(id: Int)
+    fun getTagById(id: Int): Tag
 }

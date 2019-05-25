@@ -17,5 +17,5 @@ interface EditorialDao {
     fun delete(element: Editorial)
 
     @Query("SELECT * FROM ${TableNameSpace.editorialTableName} WHERE id = :id")
-    fun getEditorialById(id: Int)
+    fun getEditorialById(id: Int): Editorial
 }
