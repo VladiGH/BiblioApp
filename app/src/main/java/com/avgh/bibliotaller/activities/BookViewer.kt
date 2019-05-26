@@ -5,13 +5,12 @@ import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.util.forEach
 import com.avgh.bibliotaller.R
-import com.avgh.bibliotaller.room.entities.Author
-import com.avgh.bibliotaller.room.entities.Book
-import com.avgh.bibliotaller.room.entities.Content
+import com.avgh.bibliotaller.room.entities.*
 import com.avgh.bibliotaller.utilities.AppConstants
 import com.avgh.bibliotaller.utilities.Languages
 import kotlinx.android.synthetic.main.book_item_layout.*
 import kotlinx.android.synthetic.main.fragment_book_detail.*
+import java.io.File.separator
 
 class BookViewer : AppCompatActivity(){
 
@@ -26,6 +25,13 @@ class BookViewer : AppCompatActivity(){
         intent?.extras?.getSparseParcelableArray<Content>(AppConstants.CONTENT_KEY)?.forEach { key, value ->
             receiver.content.put(key, value)
         }
+        intent?.extras?.getParcelableArrayList<Editorial>(AppConstants.EDITORIAL_KEY)?.forEach {
+            receiver.editorial.add(it)
+        }
+        intent?.extras?.getParcelableArrayList<Tag>(AppConstants.TAG_KEY)?.forEach {
+            receiver.tag.add(it)
+
+        }
         Log.d("MainActivity", receiver.toString())
         init(receiver)
 
@@ -38,5 +44,7 @@ class BookViewer : AppCompatActivity(){
         bookAuthor.text = book.author[0].name
         bookSummary.text = book.content.get(Languages.ENGLISH).resume
         bookTitle.text = book.content.get(Languages.ENGLISH).title
+        bookEditorial.text = book.editorial[0].name + ", " + book.editorial[0].city + ", " + book.editorial[0].year
+        bookTags.text = book.tag[0].name
     }
 }
