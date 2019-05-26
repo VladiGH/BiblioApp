@@ -69,13 +69,13 @@ class MainActivity : AppCompatActivity(), MainListFragment.ListenerTools {
                 fresh.add(book)
             }
             mainFragment = MainListFragment.newInstance(fresh)
+
             if (resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT) {
                 supportFragmentManager.beginTransaction().replace(R.id.main_fragment, mainFragment).commit()
             } else {
                 mainContentFragment = MainDetailsFragment.newInstance(fresh[0])
-                supportFragmentManager.beginTransaction().replace(R.id.land_list_fragment, mainFragment)
-                supportFragmentManager.beginTransaction().replace(R.id.land_main_content_fragment, mainContentFragment)
-                    .commit()
+                supportFragmentManager.beginTransaction().replace(R.id.land_list_fragment, mainFragment).commit()
+                supportFragmentManager.beginTransaction().replace(R.id.land_main_content_fragment, mainContentFragment).commit()
             }
 
         }
