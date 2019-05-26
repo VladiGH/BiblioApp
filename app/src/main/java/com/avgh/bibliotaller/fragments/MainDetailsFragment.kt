@@ -38,7 +38,10 @@ class MainDetailsFragment : Fragment() {
             view.bookTitle.text = book.content.valueAt(Languages.ENGLISH).title
             view.bookISBN.text = book.ISBN
             view.bookEdition.text = book.edition.toString()
-            //view.bookSummary.text = book.content.valueAt(Languages.ENGLISH).resume
+            view.bookAuthor.text = book.author[0].name?:"N/A"
+            view.bookEditorial.text = book.editorial[0].name?:"N/A"
+            view.bookTags.text = book.tag[0].name?:"N/A"
+            view.bookSummary.text = book.content.valueAt(Languages.ENGLISH).resume
         }
     }
 }
