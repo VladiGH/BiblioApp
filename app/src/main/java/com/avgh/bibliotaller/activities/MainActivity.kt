@@ -4,8 +4,6 @@ import android.content.Intent
 import android.content.res.Configuration
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Parcel
-import android.os.Parcelable
 import android.util.Log
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -23,7 +21,6 @@ import kotlinx.coroutines.*
 
 class MainActivity : AppCompatActivity(), MainListFragment.ListenerTools {
 
-    private var bookList = ArrayList<Book>()
     private lateinit var bookViewModel: BookViewModel
     private lateinit var mainFragment: MainListFragment
     private lateinit var mainContentFragment: MainDetailsFragment
@@ -36,11 +33,6 @@ class MainActivity : AppCompatActivity(), MainListFragment.ListenerTools {
             insertion()
         }
         initMainFragment()
-    }
-
-    override fun onSaveInstanceState(outState: Bundle) {
-        outState.putParcelableArrayList(AppConstants.dataset_saveinstance_key, bookList)
-        super.onSaveInstanceState(outState)
     }
 
     override fun managePortraitItemClick(item: Book) {
@@ -56,7 +48,7 @@ class MainActivity : AppCompatActivity(), MainListFragment.ListenerTools {
 
     override fun manageLandscapeItemClick(item: Book) {
         mainContentFragment = MainDetailsFragment.newInstance(item)
-        changeFragment(R.id.land_main_content_fragment, mainContentFragment)
+        supportFragmentManager.beginTransaction().replace(R.id.land_main_content_fragment, mainContentFragment).commit()
     }
 
     fun initMainFragment() {
@@ -65,7 +57,6 @@ class MainActivity : AppCompatActivity(), MainListFragment.ListenerTools {
 
         bookViewModel.books?.observe(this, Observer { books ->
             books?.let {
-                updateBookList(it as ArrayList<Book>)
                 for (book in books) {
                     Log.d("MainActivity", "-----------------------------------------------")
                     Log.d("MainActivity", book.ISBN)
@@ -77,34 +68,18 @@ class MainActivity : AppCompatActivity(), MainListFragment.ListenerTools {
                     Log.d("MainActivity", book.content.valueAt(Languages.ENGLISH).resume)
                 }
             }
+            val fresh = ArrayList<Book>()
+            books.forEach {
+                fresh.add(it)
+            }
+            mainFragment = MainListFragment.newInstance(fresh)
+            if (resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT) {
+                supportFragmentManager.beginTransaction().replace(R.id.main_fragment, mainFragment).commit()
+            } else {
+                supportFragmentManager.beginTransaction().replace(R.id.land_main_content_fragment, mainContentFragment)
+                    .commit()
+            }
         })
-
-        mainFragment = MainListFragment.newInstance(bookList)
-
-
-        val resource = if (resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT)
-            R.id.main_fragment
-        else {
-            mainContentFragment =
-                MainDetailsFragment.newInstance(Book("N/A", R.drawable.ic_launcher_background.toString(), 1, false))
-
-            changeFragment(R.id.land_main_content_fragment, mainContentFragment)
-
-            R.id.land_list_fragment
-        }
-
-        changeFragment(resource, mainFragment)
-
-
-    }
-
-    fun updateBookList(bookList: ArrayList<Book>) {
-        mainFragment.updateBookList(bookList)
-    }
-
-
-    private fun changeFragment(id: Int, frag: Fragment) {
-        supportFragmentManager.beginTransaction().replace(id, frag).commit()
     }
 
     private fun insertion() {
