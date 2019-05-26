@@ -35,7 +35,7 @@ class MainDetailsFragment : Fragment() {
         if(view != null) {
             view.land_book_image.setImageResource(book.cover.toInt())
             Log.d("MainActivity", book.content.toString())
-            //view.bookTitle.text = book.content.valueAt(Languages.ENGLISH).title
+            view.bookTitle.text = book.content.valueAt(Languages.ENGLISH).title
             view.bookISBN.text = book.ISBN
             view.bookEdition.text = book.edition.toString()
             //view.bookSummary.text = book.content.valueAt(Languages.ENGLISH).resume

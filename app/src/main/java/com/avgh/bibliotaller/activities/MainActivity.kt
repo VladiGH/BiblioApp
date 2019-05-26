@@ -56,26 +56,24 @@ class MainActivity : AppCompatActivity(), MainListFragment.ListenerTools {
         bookViewModel = ViewModelProviders.of(this).get(BookViewModel::class.java)
 
         bookViewModel.books?.observe(this, Observer { books ->
-            books?.let {
-                for (book in books) {
-                    Log.d("MainActivity", "-----------------------------------------------")
-                    Log.d("MainActivity", book.ISBN)
-                    Log.d("MainActivity", book.edition.toString())
-                    Log.d("MainActivity", "${book.author}")
-                    Log.d("MainActivity", "${book.editorial}")
-                    Log.d("MainActivity", "${book.tag}")
-                    Log.d("MainActivity", book.content.valueAt(Languages.ENGLISH).title)
-                    Log.d("MainActivity", book.content.valueAt(Languages.ENGLISH).resume)
-                }
-            }
             val fresh = ArrayList<Book>()
             books.forEach {
+                Log.d("MainActivity", "-----------------------------------------------")
+                Log.d("MainActivity", it.ISBN)
+                Log.d("MainActivity", it.edition.toString())
+                Log.d("MainActivity", "${it.author}")
+                Log.d("MainActivity", "${it.editorial}")
+                Log.d("MainActivity", "${it.tag}")
+                Log.d("MainActivity", it.content.valueAt(Languages.ENGLISH).title)
+                Log.d("MainActivity", it.content.valueAt(Languages.ENGLISH).resume)
                 fresh.add(it)
             }
             mainFragment = MainListFragment.newInstance(fresh)
             if (resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT) {
                 supportFragmentManager.beginTransaction().replace(R.id.main_fragment, mainFragment).commit()
             } else {
+                mainContentFragment = MainDetailsFragment.newInstance(fresh[0])
+                supportFragmentManager.beginTransaction().replace(R.id.land_list_fragment, mainFragment)
                 supportFragmentManager.beginTransaction().replace(R.id.land_main_content_fragment, mainContentFragment)
                     .commit()
             }
