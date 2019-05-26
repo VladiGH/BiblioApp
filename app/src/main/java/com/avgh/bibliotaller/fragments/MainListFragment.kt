@@ -23,17 +23,27 @@ class MainListFragment : Fragment() {
     var listenerTools :  ListenerTools? = null
 
     companion object {
-        fun newInstance(dataset : ArrayList<Book>): MainListFragment {
-            val newFragment = MainListFragment()
-            newFragment.bookList = dataset
-            return newFragment
-        }
+        @JvmStatic
+        fun newInstance(param1: ArrayList<Book>) =
+            MainListFragment().apply {
+                arguments = Bundle().apply {
+                    putParcelableArrayList("list", param1)
+
+                }
+            }
     }
 
     interface ListenerTools{
         fun managePortraitItemClick(item: Book)
 
         fun manageLandscapeItemClick(item: Book)
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        arguments?.let {
+            bookList = it.getParcelableArrayList("list")
+        }
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {

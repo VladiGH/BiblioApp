@@ -15,10 +15,22 @@ class MainDetailsFragment : Fragment() {
     var book = Book(R.string.n_a_value.toString(), R.drawable.ic_launcher_background.toString(), 1, false)
 
     companion object {
-        fun newInstance(item: Book): MainDetailsFragment {
-            val newFragment = MainDetailsFragment()
-            newFragment.book = item
-            return newFragment
+
+        fun newInstance (dataset : Book) : MainDetailsFragment{
+            return MainDetailsFragment().apply {
+                arguments = Bundle().apply {
+                    putParcelable("book", dataset)
+
+                }
+            }
+        }
+
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        arguments?.let {
+            book = it.getParcelable("book")
         }
     }
 
