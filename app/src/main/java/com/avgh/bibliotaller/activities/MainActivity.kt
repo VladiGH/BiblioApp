@@ -4,6 +4,8 @@ import android.content.Intent
 import android.content.res.Configuration
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Parcel
+import android.os.Parcelable
 import android.util.Log
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -45,6 +47,10 @@ class MainActivity : AppCompatActivity(), MainListFragment.ListenerTools {
         val bookBundle = Bundle()
 
         bookBundle.putParcelable(AppConstants.BOOK_KEY, item)
+        bookBundle.putParcelableArrayList(AppConstants.AUTHOR_KEY, item.author)
+        bookBundle.putParcelableArrayList(AppConstants.EDITORIAL_KEY, item.editorial)
+        bookBundle.putParcelableArrayList(AppConstants.TAG_KEY, item.tag)
+        bookBundle.putSparseParcelableArray(AppConstants.CONTENT_KEY, item.content)
         startActivity(Intent(this, BookViewer::class.java).putExtras(bookBundle))
     }
 
