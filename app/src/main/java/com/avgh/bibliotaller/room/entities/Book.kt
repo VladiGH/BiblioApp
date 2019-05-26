@@ -29,8 +29,8 @@ data class Book(
     val tag = ArrayList<Tag>()
 
     constructor(source: Parcel) : this(
-        source.readString(),
-        source.readString(),
+        source.readString()?:"N/A",
+        source.readString()?:"",
         source.readInt(),
         1 == source.readInt()
     )

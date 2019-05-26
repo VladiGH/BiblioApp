@@ -18,7 +18,6 @@ import com.avgh.bibliotaller.utilities.BookHolder
 import com.avgh.bibliotaller.utilities.Languages
 import com.avgh.bibliotaller.viewmodels.BookViewModel
 import kotlinx.coroutines.*
-import java.lang.Exception
 
 class MainActivity : AppCompatActivity(), MainListFragment.ListenerTools {
 
