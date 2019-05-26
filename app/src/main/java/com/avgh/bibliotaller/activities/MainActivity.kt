@@ -51,22 +51,22 @@ class MainActivity : AppCompatActivity(), MainListFragment.ListenerTools {
         supportFragmentManager.beginTransaction().replace(R.id.land_main_content_fragment, mainContentFragment).commit()
     }
 
-    fun initMainFragment() {
+    private fun initMainFragment() {
 
         bookViewModel = ViewModelProviders.of(this).get(BookViewModel::class.java)
 
-        bookViewModel.books?.observe(this, Observer { books ->
+        bookViewModel.getBooks {
             val fresh = ArrayList<Book>()
-            books.forEach {
+            it.value?.forEach { book ->
                 Log.d("MainActivity", "-----------------------------------------------")
-                Log.d("MainActivity", it.ISBN)
-                Log.d("MainActivity", it.edition.toString())
-                Log.d("MainActivity", "${it.author}")
-                Log.d("MainActivity", "${it.editorial}")
-                Log.d("MainActivity", "${it.tag}")
-                Log.d("MainActivity", it.content.valueAt(Languages.ENGLISH).title)
-                Log.d("MainActivity", it.content.valueAt(Languages.ENGLISH).resume)
-                fresh.add(it)
+                Log.d("MainActivity", book.ISBN)
+                Log.d("MainActivity", book.edition.toString())
+                Log.d("MainActivity", "${book.author}")
+                Log.d("MainActivity", "${book.editorial}")
+                Log.d("MainActivity", "${book.tag}")
+                Log.d("MainActivity", book.content.valueAt(Languages.ENGLISH).title)
+                Log.d("MainActivity", book.content.valueAt(Languages.ENGLISH).resume)
+                fresh.add(book)
             }
             mainFragment = MainListFragment.newInstance(fresh)
             if (resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT) {
@@ -77,7 +77,8 @@ class MainActivity : AppCompatActivity(), MainListFragment.ListenerTools {
                 supportFragmentManager.beginTransaction().replace(R.id.land_main_content_fragment, mainContentFragment)
                     .commit()
             }
-        })
+
+        }
     }
 
     private fun insertion() {

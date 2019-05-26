@@ -14,13 +14,7 @@ import kotlinx.coroutines.launch
 class BookViewModel(application: Application) : AndroidViewModel(application) {
 
     private val bookRepository: BookRepository = BookRepository(application)
-    var books: LiveData<List<Book>>? = null
-
-    init {
-        viewModelScope.launch(Dispatchers.IO) {
-            books = MutableLiveData(bookRepository.getFullBooks(Languages.ENGLISH))
-        }
-    }
+    lateinit var books: LiveData<List<Book>>
 
     fun insert(book: Book) = viewModelScope.launch(Dispatchers.IO) { bookRepository.insert(book) }
 
@@ -30,5 +24,12 @@ class BookViewModel(application: Application) : AndroidViewModel(application) {
 
     fun getBooksInLanguaje(language: Int) = viewModelScope.launch(Dispatchers.IO) {
         books = MutableLiveData(bookRepository.getFullBooks(language))
+    }
+
+    fun getBooks(callback: (data: LiveData<List<Book>>) -> Unit) {
+        viewModelScope.launch(Dispatchers.IO) {
+            books = MutableLiveData(bookRepository.getFullBooks(Languages.ENGLISH))
+            callback(books)
+        }
     }
 }

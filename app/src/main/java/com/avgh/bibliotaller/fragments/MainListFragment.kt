@@ -38,25 +38,20 @@ class MainListFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         super.onCreateView(inflater, container, savedInstanceState)
-
         val view = inflater.inflate(R.layout.fragment_book_list, container, false)
-
-        if(savedInstanceState != null) bookList = savedInstanceState.getParcelableArrayList<Book>(AppConstants.MAIN_LIST_KEY)!!
-
         initRecyclerView(resources.configuration.orientation, view)
-
         return view
     }
 
-    fun initRecyclerView(orientation:Int, container: View){
+    private fun initRecyclerView(orientation:Int, container: View){
         val linearLayoutManager = LinearLayoutManager(this.context)
         val gridLayoutManager = GridLayoutManager(this.context,2)
 
         if(orientation == Configuration.ORIENTATION_PORTRAIT){
             BookAdapter =
                 BookAdapter(
-                    bookList,
-                    { item: Book -> listenerTools?.managePortraitItemClick(item) })
+                    bookList
+                ) { item: Book -> listenerTools?.managePortraitItemClick(item) }
 
             container.recyclerView.adapter = BookAdapter as BookAdapter
 
@@ -68,8 +63,8 @@ class MainListFragment : Fragment() {
         if(orientation == Configuration.ORIENTATION_LANDSCAPE){
             BookAdapter =
                 BookAdapter(
-                    bookList,
-                    { item: Book -> listenerTools?.manageLandscapeItemClick(item) })
+                    bookList
+                ) { item: Book -> listenerTools?.manageLandscapeItemClick(item) }
 
             container.recyclerView.adapter = BookAdapter as BookAdapter
 
